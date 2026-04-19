@@ -30,30 +30,48 @@ export default function CareersApplyPage() {
     setStatus("submitting");
     setMessage("");
 
-    const payload = {
-      ...form,
-      resumeName: form.resume?.name ?? "",
-      resumeType: form.resume?.type ?? "",
-      resumeSizeBytes: form.resume?.size ?? 0,
-    };
+    if (!form.resume) {
+      setStatus("error");
+      setMessage("Please attach your resume (PDF or Word).");
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append("fullName", form.fullName);
+    fd.append("email", form.email);
+    fd.append("phone", form.phone);
+    fd.append("location", form.location);
+    fd.append("linkedInUrl", form.linkedInUrl);
+    if (form.portfolioUrl.trim()) fd.append("portfolioUrl", form.portfolioUrl.trim());
+    fd.append("position", form.position);
+    fd.append("yearsExperience", form.yearsExperience);
+    fd.append("startDate", form.startDate);
+    fd.append("salaryExpectation", form.salaryExpectation);
+    fd.append("legalAuthorization", form.legalAuthorization);
+    fd.append("visaSponsorship", form.visaSponsorship);
+    fd.append("resume", form.resume);
 
     try {
       const response = await fetch("/api/applications", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: fd,
       });
 
       if (!response.ok) {
-        throw new Error("Submission failed");
+        const data = (await response.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error || "Submission failed");
       }
 
       setStatus("success");
       setMessage("Application submitted successfully. Our team will get back to you.");
       setForm(initialState);
-    } catch (_error) {
+    } catch (err) {
       setStatus("error");
-      setMessage("Unable to submit right now. Please try again in a few minutes.");
+      setMessage(
+        err instanceof Error
+          ? err.message
+          : "Unable to submit right now. Please try again in a few minutes.",
+      );
     }
   }
 

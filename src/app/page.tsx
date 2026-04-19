@@ -1,3 +1,5 @@
+import { HeroTopBar } from "@/components/HeroTopBar";
+
 export default function HomePage() {
   const services = [
     {
@@ -54,17 +56,7 @@ export default function HomePage() {
     <main className="page">
       <header className="hero">
         <div className="hero-overlay">
-          <div className="hero-topbar">
-            <img src="/Logo-site-light.png" alt="Eassy Onboard LLP" className="site-logo" />
-            <nav className="top-nav">
-              <a href="#services">Services</a>
-              <a href="#why-us">Why Us</a>
-              <a href="#about">About</a>
-              <a href="#testimonials">Testimonials</a>
-              <a href="#contact">Contact</a>
-              <a href="/careers">Careers</a>
-            </nav>
-          </div>
+          <HeroTopBar />
           <div className="hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">Enterprise Data & AI Solutions</p>
@@ -213,50 +205,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="section">
-        <div className="contact-shell">
-          <div className="section-heading">
-            <p className="section-kicker">Contact Us</p>
-            <h2>Let&apos;s build your next data platform with confidence</h2>
-          </div>
-          <div className="contact-cards">
-            <a
-              className="contact-card"
-              href="https://www.linkedin.com/company/eassyonboardllp/?viewAsMember=true"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
+      <section id="contact" className="site-bottom-strip" aria-labelledby="bottom-contact-heading">
+        <h2 id="bottom-contact-heading" className="visually-hidden">
+          Contact
+        </h2>
+        <div className="bottom-strip-columns">
+          <div className="bottom-strip-col bottom-strip-col--connect">
+            <h3 className="bottom-strip-heading">Connect</h3>
+            <p className="bottom-strip-lead">
+              Let&apos;s build your next data platform with confidence.
+            </p>
+            <div className="connect-channels" role="group" aria-label="Contact channels">
+              <a
+                href="https://www.linkedin.com/company/eassyonboardllp/?viewAsMember=true"
+                target="_blank"
+                rel="noreferrer"
+                className="connect-channel-link"
+                aria-label="Eassy Onboard on LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM5.6 18.4h2.67V9.58H5.6V18.4zM10.03 9.58h2.56v1.2h.04c.36-.67 1.22-1.38 2.5-1.38 2.67 0 3.17 1.76 3.17 4.04v4.96h-2.67V14c0-1.06-.02-2.43-1.48-2.43-1.49 0-1.72 1.16-1.72 2.36v4.47h-2.67V9.58z" />
                 </svg>
-              </span>
-              <span>
-                <strong>LinkedIn</strong>
-                <small>Connect with Eassy Onboard LLP</small>
-              </span>
-            </a>
-            <a className="contact-card contact-card-primary" href="mailto:admin@eassyonboard.com">
-              <span className="contact-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="mailto:admin@eassyonboard.com"
+                className="connect-channel-link"
+                aria-label="Email admin@eassyonboard.com"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75zm2.3-.25L12 11.14l6.7-4.64H5.3zm13.2 2.01-6.06 4.2a.75.75 0 0 1-.88 0L5.5 8.5v8.75c0 .25.2.45.45.45h12.1c.25 0 .45-.2.45-.45V8.5z" />
                 </svg>
-              </span>
-              <span>
-                <strong>Email</strong>
-                <small>admin@eassyonboard.com</small>
-              </span>
-            </a>
+                <span>Email</span>
+              </a>
+            </div>
+            <div className="connect-query">
+              <h4 className="connect-query-heading">Have a question?</h4>
+              <p className="connect-query-text">
+                Ask us about Databricks delivery, data architecture, or AI on your
+                enterprise data — whether you&apos;re scoping a migration, a new
+                pipeline, or a proof of concept. We&apos;ll get back to you with a
+                thoughtful reply.
+              </p>
+              <a className="connect-query-cta" href="mailto:admin@eassyonboard.com">
+                Send us a message
+              </a>
+            </div>
+          </div>
+          <div className="bottom-strip-col">
+            <h3 className="bottom-strip-heading">Headquarters</h3>
+            <p className="bottom-strip-text">
+              Plot No 37, Kanteshver Society, Katargam, Surat, Gujarat 395004, India
+            </p>
           </div>
         </div>
       </section>
 
-      <footer className="footer">
-        <div className="footer-signature">
-          <img src="/Logo-site-light.png" alt="Eassy Onboard LLP" className="site-logo" />
-          <p className="signature-line">Eassy Onboard LLP</p>
-          <p className="signature-location">
+      <footer className="footer footer-site">
+        <div className="footer-brand-block">
+          <img
+            src="/Logo-site-light.png"
+            alt="Eassy Onboard LLP"
+            className="footer-logo-single"
+          />
+          <p className="footer-brand-name">Eassy Onboard LLP</p>
+          <p className="footer-brand-address">
             Plot No 37, Kanteshver Society, Katargam, Surat, Gujarat 395004, IN
+          </p>
+          <p className="footer-copyright">
+            © {new Date().getFullYear()} Eassy Onboard LLP. All rights reserved.
           </p>
         </div>
       </footer>
