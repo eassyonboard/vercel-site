@@ -1,138 +1,264 @@
 export default function HomePage() {
+  const services = [
+    {
+      title: "Automated Data Workflow Orchestration",
+      image: "/service-1.png",
+      description:
+        "We design and implement automated workflows in Databricks to remove manual steps, boost efficiency, and ensure reliable, consistent data operations — freeing your team to focus on high-value tasks.",
+    },
+    {
+      title: "Cost & Resource Optimization",
+      image: "/service-3.png",
+      description:
+        "We help you maximize value from Databricks through proven cloud management practices. Lower costs, better resource utilization, and improved operational efficiency — all without sacrificing performance.",
+    },
+    {
+      title: "Scalable Data Architecture",
+      image: "/service-2.png",
+      description:
+        "We build secure, future-ready data architectures in Databricks that handle both structured and unstructured data. Scalable performance, robust reliability, and strong data trust are built in.",
+    },
+    {
+      title: "AI Agents for Enterprise Workflows",
+      image: "/service-4.png",
+      description:
+        "Design and deploy Agentic AI systems with guardrails, evaluation, and orchestration so business teams can automate decision-heavy workflows with confidence.",
+    },
+    {
+      title: "RAG and Knowledge Intelligence",
+      image: "/service-4.png",
+      description:
+        "Build production-ready Retrieval-Augmented Generation pipelines using governed enterprise data, vector search, and observability for trusted AI responses.",
+    },
+    {
+      title: "EOR Portal and Global Hiring Enablement",
+      image: "/service-1.png",
+      description:
+        "Enable foreign companies to hire and manage Indian talent through our EOR model covering payroll, compliance, taxation, and statutory operations end-to-end.",
+    },
+  ];
+
+  const differentiators = [
+    "Databricks-focused delivery with deep Spark, PySpark, and SQL expertise",
+    "Cloud-ready data platforms built for GCP, AWS, and AI-first workloads",
+    "Integrated EOR services to scale teams in India without payroll and compliance friction",
+  ];
+
+  const metrics = [
+    { value: "50%", label: "faster development in a client migration program" },
+    { value: "60%", label: "improvement in major transformation query processing" },
+    { value: "20%", label: "cost reduction achieved in Databricks migration work" },
+  ];
+
   return (
     <main className="page">
       <header className="hero">
-        <div className="hero-content">
-          <p className="eyebrow">EassyOnboard LLP</p>
-          <h1>Onboarding made effortless for modern teams.</h1>
-          <p className="lead">
-            We help organizations design and automate delightful onboarding
-            experiences, from paperwork to first-week productivity.
-          </p>
-          <div className="hero-actions">
-            <a href="#contact" className="btn primary">
-              Talk to us
-            </a>
-            <a href="#services" className="btn ghost">
-              Explore services
-            </a>
+        <div className="hero-overlay">
+          <div className="hero-topbar">
+            <img src="/Logo-site-light.png" alt="Eassy Onboard LLP" className="site-logo" />
+            <nav className="top-nav">
+              <a href="#services">Services</a>
+              <a href="#why-us">Why Us</a>
+              <a href="#about">About</a>
+              <a href="#testimonials">Testimonials</a>
+              <a href="#contact">Contact</a>
+              <a href="/careers">Careers</a>
+            </nav>
           </div>
-        </div>
-        <div className="hero-media">
-          <div className="hero-card">
-            <p className="hero-card-title">AI-powered workflows</p>
-            <p className="hero-card-body">
-              Structure repeatable onboarding journeys that scale with every
-              new hire.
-            </p>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <p className="eyebrow">Enterprise Data & AI Solutions</p>
+              <h1 className="hero-title">
+                Build enterprise-grade Databricks platforms that power analytics, AI,
+                and scale.
+              </h1>
+              <p className="lead">
+                At Eassy Onboard, we help global teams design world-class data
+                architectures on Databricks and drive business value through
+                customized AI solutions.
+              </p>
+              <div className="hero-actions">
+                <a href="#contact" className="btn primary">
+                  Contact us
+                </a>
+                <a href="/careers" className="btn ghost">
+                  View careers
+                </a>
+              </div>
+            </div>
+
+            <aside className="hero-panel">
+              <img
+                src="/databricks-white-copy.png"
+                alt="Databricks Partner"
+                className="partner-logo"
+              />
+              <p className="hero-panel-copy">
+                Spark-native engineering, scalable data systems, and AI-ready
+                architecture for modern product and platform teams.
+              </p>
+              <div className="metric-stack">
+                {metrics.map((metric) => (
+                  <div key={metric.value} className="metric-card">
+                    <strong>{metric.value}</strong>
+                    <span>{metric.label}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
           </div>
         </div>
       </header>
 
       <section id="services" className="section">
-        <h2>What we do</h2>
+        <h2>Our Services</h2>
         <p className="section-intro">
-          Partner with us to transform your onboarding into a strategic
-          advantage.
+          Transform your data journey with solutions that deliver clarity,
+          performance, and sustainable growth.
         </p>
         <div className="grid">
-          <article className="card">
-            <h3>Onboarding strategy & design</h3>
-            <p>
-              Define clear journeys for different roles, with the right
-              milestones, communications, and hand-offs.
-            </p>
-          </article>
-          <article className="card">
-            <h3>Process automation</h3>
-            <p>
-              Integrate your HR, IT, and collaboration tools so onboarding
-              runs on autopilot.
-            </p>
-          </article>
-          <article className="card">
-            <h3>Analytics & insights</h3>
-            <p>
-              Track completion, satisfaction, and ramp-up speed with
-              actionable dashboards.
-            </p>
-          </article>
+          {services.map((service) => (
+            <article className="card" key={service.title}>
+              <img src={service.image} alt={service.title} className="service-icon" />
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section id="about" className="section muted">
+      <section id="why-us" className="section section-alt">
+        <div className="section-heading">
+          <p className="section-kicker">Why Eassy Onboard</p>
+          <h2>From platform implementation to measurable business outcomes</h2>
+        </div>
+        <div className="value-grid">
+          {differentiators.map((item, index) => (
+            <article className="value-card" key={item}>
+              <span className="value-badge">{String(index + 1).padStart(2, "0")}</span>
+              <p>{item}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="about" className="section">
         <div className="split">
-          <div>
-            <h2>About EassyOnboard LLP</h2>
+          <div className="content-card">
+            <h2>About us</h2>
             <p>
-              We are a team of consultants and technologists focused
-              exclusively on solving onboarding for growing companies. From
-              startups to enterprises, we bring battle-tested playbooks and
-              modern tooling.
+              We are a team of Databricks Certified Data Engineers dedicated to
+              empowering businesses and talent in the data-driven world. Our
+              expertise spans across designing automated workflows, scalable
+              architectures, optimized pipelines, and performance-tuned
+              Databricks environments.
             </p>
             <p>
-              Our approach combines human-centered design with automation so
-              every new hire feels welcomed, empowered, and productive from
-              day one.
+              Beyond enterprise solutions, we are committed to upskilling
+              Indian talent through industry-aligned training, mentorship, and
+              hands-on project experience.
             </p>
+            <a href="/careers" className="text-link">
+              Explore careers
+            </a>
           </div>
-          <div className="info-panel">
-            <p className="stat">
-              <span>90%</span>+ completion rates for onboarding journeys
+          <img src="/about-team.png" alt="About Eassy Onboard team" className="about-image" />
+        </div>
+      </section>
+
+      <section id="testimonials" className="section muted">
+        <div className="section-heading">
+          <p className="section-kicker">Customer Success</p>
+          <h2>Client Testimonials</h2>
+        </div>
+        <div className="grid">
+          <article className="card">
+            <img src="/nikhil-jain.png" alt="Nikhil Jain" className="testimonial-logo" />
+            <p>
+              Eassy Onboard did not just help us migrate, they helped us evolve.
+              They untangled legacy data complexities, optimized ETL pipelines,
+              and introduced Python-based solutions for real-time geospatial
+              data.
             </p>
-            <p className="stat">
-              <span>50%</span> faster time-to-productivity on average
+            <p className="person">Nikhil Jain — Founder, Apnakhana</p>
+          </article>
+          <article className="card">
+            <img
+              src="/the-arena-group.jpg"
+              alt="The Arena Group"
+              className="testimonial-logo"
+            />
+            <p>
+              Their team has demonstrated deep technical expertise and
+              executional excellence across Databricks, GCP, and APIs, and
+              helped advance our Agentic AI use cases with fine-tuned models.
             </p>
-          </div>
+            <p className="person">
+              Deeptanshu Kumar — Vice President, Data Engineering Arena Group
+            </p>
+          </article>
+          <article className="card">
+            <img
+              src="/tomato-games.png"
+              alt="Tomato Games"
+              className="testimonial-logo"
+            />
+            <p>
+              Eassy Onboard played a crucial role in our Databricks migration.
+              Development time improved by nearly 50%, major query processing by
+              about 60%, and costs reduced around 20%.
+            </p>
+            <p className="person">Mitesh Savaliya — CEO, Tomato Games</p>
+          </article>
         </div>
       </section>
 
       <section id="contact" className="section">
-        <h2>Let&apos;s get started</h2>
-        <p className="section-intro">
-          Tell us a bit about your team and we&apos;ll get back within one
-          business day.
-        </p>
-        <form
-          className="contact-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <div className="field-group">
-            <label htmlFor="name">Name</label>
-            <input id="name" name="name" placeholder="Your name" />
+        <div className="contact-shell">
+          <div className="section-heading">
+            <p className="section-kicker">Contact Us</p>
+            <h2>Let&apos;s build your next data platform with confidence</h2>
           </div>
-          <div className="field-group">
-            <label htmlFor="company">Company</label>
-            <input id="company" name="company" placeholder="Company name" />
+          <div className="contact-cards">
+            <a
+              className="contact-card"
+              href="https://www.linkedin.com/company/eassyonboardllp/?viewAsMember=true"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M6.94 8.5a1.56 1.56 0 1 1 0-3.12 1.56 1.56 0 0 1 0 3.12zM5.6 18.4h2.67V9.58H5.6V18.4zM10.03 9.58h2.56v1.2h.04c.36-.67 1.22-1.38 2.5-1.38 2.67 0 3.17 1.76 3.17 4.04v4.96h-2.67V14c0-1.06-.02-2.43-1.48-2.43-1.49 0-1.72 1.16-1.72 2.36v4.47h-2.67V9.58z" />
+                </svg>
+              </span>
+              <span>
+                <strong>LinkedIn</strong>
+                <small>Connect with Eassy Onboard LLP</small>
+              </span>
+            </a>
+            <a className="contact-card contact-card-primary" href="mailto:admin@eassyonboard.com">
+              <span className="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75zm2.3-.25L12 11.14l6.7-4.64H5.3zm13.2 2.01-6.06 4.2a.75.75 0 0 1-.88 0L5.5 8.5v8.75c0 .25.2.45.45.45h12.1c.25 0 .45-.2.45-.45V8.5z" />
+                </svg>
+              </span>
+              <span>
+                <strong>Email</strong>
+                <small>admin@eassyonboard.com</small>
+              </span>
+            </a>
           </div>
-          <div className="field-group">
-            <label htmlFor="email">Work email</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="you@company.com"
-            />
-          </div>
-          <div className="field-group full">
-            <label htmlFor="message">How can we help?</label>
-            <textarea
-              id="message"
-              name="message"
-              rows={4}
-              placeholder="Share a bit about your current onboarding challenges."
-            />
-          </div>
-          <button className="btn primary" type="submit">
-            Submit
-          </button>
-        </form>
+        </div>
       </section>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} EassyOnboard LLP. All rights reserved.</p>
+        <div className="footer-signature">
+          <img src="/Logo-site-light.png" alt="Eassy Onboard LLP" className="site-logo" />
+          <p className="signature-line">Eassy Onboard LLP</p>
+          <p className="signature-location">
+            Plot No 37, Kanteshver Society, Katargam, Surat, Gujarat 395004, IN
+          </p>
+        </div>
       </footer>
     </main>
   );

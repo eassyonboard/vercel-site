@@ -14,3 +14,23 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# WordPress export / theme dumps at repo root (site assets live under public/)
+eassyonboardcom.*.xml
+elementor/
+ai-builder/
+ast-block-templates-json/
+astra/
+astra-addon/
+astra-docs/
+astra-sites/
+the7-css/
+2025/
+
+# Loose media at repo root (canonical copies are in public/)
+/*.png
+/*.jpg
+/*.jpeg
+/*.svg
+/*.gif
+/*.webp
+
