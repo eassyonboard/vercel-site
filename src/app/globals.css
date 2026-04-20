@@ -675,6 +675,13 @@ img {
   font-size: 0.9rem;
 }
 
+.careers-tags .tag-remote,
+.tag-remote {
+  border-color: rgba(94, 234, 212, 0.6);
+  color: #5eead4;
+  background: rgba(45, 212, 191, 0.14);
+}
+
 .careers-page {
   min-height: auto;
 }
@@ -758,6 +765,75 @@ img {
   justify-content: center;
 }
 
+.remote-highlight {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #5eead4;
+}
+
+.careers-grid-overview .careers-container {
+  min-height: 100%;
+}
+
+.open-roles-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.open-role-card {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.62);
+}
+
+.open-role-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.open-role-head h3 {
+  margin: 0;
+}
+
+.open-role-card p {
+  margin: 0.7rem 0 0.95rem;
+}
+
+.open-role-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.role-picker-card {
+  padding: 1.35rem;
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(19, 33, 58, 0.9), rgba(15, 23, 42, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.role-picker-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.65rem;
+}
+
+.role-picker-row select {
+  width: 100%;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.7);
+  color: #f8fafc;
+  padding: 0.58rem 0.65rem;
+  font: inherit;
+}
+
 .apply-hero {
   padding-bottom: 1.2rem;
 }
@@ -801,6 +877,11 @@ img {
   font: inherit;
 }
 
+.form-grid input:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
 .full-width {
   grid-column: 1 / -1;
 }
@@ -831,6 +912,10 @@ img {
 
   .value-grid,
   .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .role-picker-row {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1058,6 +1143,10 @@ img {
   display: inline-flex;
 }
 
+.secondary-resume-btn {
+  margin-left: 0.65rem;
+}
+
 .admin-detail-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1093,6 +1182,11 @@ img {
 @media (max-width: 640px) {
   .admin-detail-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .secondary-resume-btn {
+    margin-left: 0;
+    margin-top: 0.55rem;
   }
 }
 

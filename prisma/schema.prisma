@@ -18,7 +18,12 @@ model JobApplication {
   linkedInUrl          String
   portfolioUrl         String?
   position             String
+  roleSlug             String   @default("")
   yearsExperience      String
+  experienceBand       String   @default("")
+  currentCtc           String?
+  expectedCtc          String?
+  noticePeriod         String?
   startDate            String
   salaryExpectation    String
   legalAuthorization   String
@@ -28,6 +33,10 @@ model JobApplication {
   resumeFileName    String
   resumeContentType String
   resumeSizeBytes   Int
+  otherDocumentPathname    String?
+  otherDocumentFileName    String?
+  otherDocumentContentType String?
+  otherDocumentSizeBytes   Int?
 
   @@index([createdAt])
   @@index([email])

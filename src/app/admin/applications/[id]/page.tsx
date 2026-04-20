@@ -38,6 +38,14 @@ export default async function AdminApplicationDetailPage({ params }: PageProps) 
         >
           Download resume ({app.resumeFileName})
         </a>
+        {app.otherDocumentFileName ? (
+          <a
+            className="btn ghost admin-detail-resume secondary-resume-btn"
+            href={`/api/admin/applications/${app.id}/other-document`}
+          >
+            Download supporting doc ({app.otherDocumentFileName})
+          </a>
+        ) : null}
       </header>
 
       <dl className="admin-detail-grid">
@@ -80,24 +88,32 @@ export default async function AdminApplicationDetailPage({ params }: PageProps) 
           <dd>{app.position}</dd>
         </div>
         <div>
+          <dt>Role Slug</dt>
+          <dd>{app.roleSlug || "—"}</dd>
+        </div>
+        <div>
           <dt>Years of experience</dt>
-          <dd>{app.yearsExperience}</dd>
+          <dd>{app.experienceBand || app.yearsExperience}</dd>
         </div>
         <div>
-          <dt>Start date</dt>
-          <dd>{app.startDate}</dd>
+          <dt>Current CTC</dt>
+          <dd>{app.currentCtc || "—"}</dd>
         </div>
         <div>
-          <dt>Salary expectations</dt>
-          <dd>{app.salaryExpectation}</dd>
+          <dt>Expected CTC</dt>
+          <dd>{app.expectedCtc || app.salaryExpectation || "—"}</dd>
+        </div>
+        <div>
+          <dt>Notice period</dt>
+          <dd>{app.noticePeriod || app.startDate || "—"}</dd>
         </div>
         <div>
           <dt>Authorized to work</dt>
-          <dd>{app.legalAuthorization}</dd>
+          <dd>{app.legalAuthorization || "—"}</dd>
         </div>
         <div>
           <dt>Visa sponsorship</dt>
-          <dd>{app.visaSponsorship}</dd>
+          <dd>{app.visaSponsorship || "—"}</dd>
         </div>
       </dl>
     </main>

@@ -18,8 +18,12 @@ export async function GET() {
       phone: true,
       location: true,
       position: true,
+      roleSlug: true,
+      experienceBand: true,
       yearsExperience: true,
-      startDate: true,
+      noticePeriod: true,
+      currentCtc: true,
+      expectedCtc: true,
       salaryExpectation: true,
       legalAuthorization: true,
       visaSponsorship: true,
@@ -27,6 +31,8 @@ export async function GET() {
       portfolioUrl: true,
       resumeFileName: true,
       resumeSizeBytes: true,
+      otherDocumentFileName: true,
+      otherDocumentSizeBytes: true,
     },
   });
 

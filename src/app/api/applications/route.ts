@@ -38,14 +38,17 @@ export async function POST(request: Request) {
     const linkedInUrl = String(formData.get("linkedInUrl") ?? "").trim();
     const portfolioUrl = optionalString(formData, "portfolioUrl");
     const position = String(formData.get("position") ?? "").trim();
-    const yearsExperience = String(formData.get("yearsExperience") ?? "").trim();
-    const startDate = String(formData.get("startDate") ?? "").trim();
-    const salaryExpectation = String(formData.get("salaryExpectation") ?? "").trim();
-    const legalAuthorization = String(formData.get("legalAuthorization") ?? "").trim();
-    const visaSponsorship = String(formData.get("visaSponsorship") ?? "").trim();
+    const roleSlug = String(formData.get("roleSlug") ?? "").trim();
+    const experienceBand =
+      String(formData.get("experienceBand") ?? "").trim() ||
+      String(formData.get("yearsExperience") ?? "").trim();
+    const currentCtc = optionalString(formData, "currentCtc");
+    const expectedCtc = optionalString(formData, "expectedCtc");
+    const noticePeriod = optionalString(formData, "noticePeriod");
 
     const resume = formData.get("resume");
-    if (!fullName || !email || !position) {
+    const otherDocument = formData.get("otherDocument");
+    if (!fullName || !email || !phone || !position || !experienceBand || !location) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
     if (!(resume instanceof File) || resume.size === 0) {
@@ -54,6 +57,16 @@ export async function POST(request: Request) {
     if (resume.size > MAX_RESUME_BYTES) {
       return NextResponse.json(
         { error: "Resume file is too large (max 8 MB)." },
+        { status: 400 },
+      );
+    }
+    if (
+      otherDocument instanceof File &&
+      otherDocument.size > 0 &&
+      otherDocument.size > MAX_RESUME_BYTES
+    ) {
+      return NextResponse.json(
+        { error: "Other document file is too large (max 8 MB)." },
         { status: 400 },
       );
     }
@@ -68,6 +81,32 @@ export async function POST(request: Request) {
       contentType: resume.type || "application/octet-stream",
     });
 
+    let otherDocBlob:
+      | {
+          pathname: string;
+          url: string;
+          contentType: string;
+          fileName: string;
+          size: number;
+        }
+      | undefined;
+    if (otherDocument instanceof File && otherDocument.size > 0) {
+      const safeOther = otherDocument.name.replace(/[^a-zA-Z0-9._-]+/g, "_").slice(0, 120);
+      const otherPath = `job-applications/${applicationId}/other-${safeOther || "document"}`;
+      const uploaded = await put(otherPath, otherDocument, {
+        access: "private",
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+        contentType: otherDocument.type || "application/octet-stream",
+      });
+      otherDocBlob = {
+        pathname: uploaded.pathname,
+        url: uploaded.url,
+        contentType: otherDocument.type || "application/octet-stream",
+        fileName: otherDocument.name || "document",
+        size: otherDocument.size,
+      };
+    }
+
     let row;
     try {
       row = await prisma.jobApplication.create({
@@ -80,19 +119,31 @@ export async function POST(request: Request) {
           linkedInUrl,
           portfolioUrl: portfolioUrl ?? null,
           position,
-          yearsExperience,
-          startDate,
-          salaryExpectation,
-          legalAuthorization,
-          visaSponsorship,
+          roleSlug,
+          yearsExperience: experienceBand,
+          startDate: noticePeriod || "",
+          salaryExpectation: expectedCtc || "",
+          legalAuthorization: "not_collected",
+          visaSponsorship: "not_collected",
+          experienceBand,
+          currentCtc: currentCtc ?? null,
+          expectedCtc: expectedCtc ?? null,
+          noticePeriod: noticePeriod ?? null,
           resumePathname: blob.pathname,
           resumeFileName: resume.name || "resume",
           resumeContentType: resume.type || "application/octet-stream",
           resumeSizeBytes: resume.size,
+          otherDocumentPathname: otherDocBlob?.pathname ?? null,
+          otherDocumentFileName: otherDocBlob?.fileName ?? null,
+          otherDocumentContentType: otherDocBlob?.contentType ?? null,
+          otherDocumentSizeBytes: otherDocBlob?.size ?? null,
         },
       });
     } catch (dbError) {
       await del(blob.url, { token: process.env.BLOB_READ_WRITE_TOKEN }).catch(() => {});
+      if (otherDocBlob?.url) {
+        await del(otherDocBlob.url, { token: process.env.BLOB_READ_WRITE_TOKEN }).catch(() => {});
+      }
       throw dbError;
     }
 
@@ -113,13 +164,17 @@ export async function POST(request: Request) {
             linkedInUrl: row.linkedInUrl,
             portfolioUrl: row.portfolioUrl,
             position: row.position,
+            roleSlug: row.roleSlug,
             yearsExperience: row.yearsExperience,
-            startDate: row.startDate,
-            salaryExpectation: row.salaryExpectation,
+            currentCtc: row.currentCtc,
+            expectedCtc: row.expectedCtc,
+            noticePeriod: row.noticePeriod,
             legalAuthorization: row.legalAuthorization,
             visaSponsorship: row.visaSponsorship,
             resumeFileName: row.resumeFileName,
             resumeSizeBytes: row.resumeSizeBytes,
+            otherDocumentFileName: row.otherDocumentFileName,
+            otherDocumentSizeBytes: row.otherDocumentSizeBytes,
           },
         }),
       }).catch(() => {

@@ -63,6 +63,22 @@ export default async function AdminApplicationsPage() {
                     {" "}
                     ({Math.round(row.resumeSizeBytes / 1024)} KB)
                   </span>
+                  {row.otherDocumentFileName ? (
+                    <div>
+                      <a
+                        className="admin-apps-download"
+                        href={`/api/admin/applications/${row.id}/other-document`}
+                      >
+                        {row.otherDocumentFileName}
+                      </a>
+                      {row.otherDocumentSizeBytes ? (
+                        <span className="admin-apps-size">
+                          {" "}
+                          ({Math.round(row.otherDocumentSizeBytes / 1024)} KB)
+                        </span>
+                      ) : null}
+                    </div>
+                  ) : null}
                 </td>
                 <td>
                   <Link className="admin-apps-view" href={`/admin/applications/${row.id}`}>
