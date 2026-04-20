@@ -13,9 +13,12 @@ function optionalString(formData: FormData, key: string): string | undefined {
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.DATABASE_URL) {
+    if (!process.env.DATABASE_URL?.trim()) {
       return NextResponse.json(
-        { error: "Applications are not configured (missing DATABASE_URL)." },
+        {
+          error:
+            "Applications are not configured (missing DATABASE_URL or POSTGRES_PRISMA_URL / POSTGRES_URL).",
+        },
         { status: 503 },
       );
     }
