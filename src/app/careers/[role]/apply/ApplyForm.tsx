@@ -11,7 +11,7 @@ const defaultState = {
   fullName: "",
   phone: "",
   email: "",
-  experienceBand: "",
+  yearsExperience: "",
   location: "",
   currentCtc: "",
   expectedCtc: "",
@@ -42,7 +42,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
     fd.append("fullName", form.fullName);
     fd.append("phone", form.phone);
     fd.append("email", form.email);
-    fd.append("experienceBand", form.experienceBand);
+    fd.append("yearsExperience", form.yearsExperience);
     fd.append("location", form.location);
     fd.append("currentCtc", form.currentCtc);
     fd.append("expectedCtc", form.expectedCtc);
@@ -86,6 +86,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
           Full Name *
           <input
             required
+            placeholder="John Doe"
             value={form.fullName}
             onChange={(event) => setForm((prev) => ({ ...prev, fullName: event.target.value }))}
           />
@@ -94,6 +95,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
           Mobile Number *
           <input
             required
+            placeholder="+91 98765 43210"
             value={form.phone}
             onChange={(event) => setForm((prev) => ({ ...prev, phone: event.target.value }))}
           />
@@ -103,6 +105,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
           <input
             required
             type="email"
+            placeholder="john@example.com"
             value={form.email}
             onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
           />
@@ -112,28 +115,25 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
       <h2>Job & Experience</h2>
       <div className="form-grid">
         <label>
-          Role
+          Applying For *
           <input value={roleTitle} disabled />
         </label>
         <label>
           Years of Experience *
-          <select
+          <input
             required
-            value={form.experienceBand}
+            placeholder="Enter exact years (e.g. 3 or 2.6)"
+            value={form.yearsExperience}
             onChange={(event) =>
-              setForm((prev) => ({ ...prev, experienceBand: event.target.value }))
+              setForm((prev) => ({ ...prev, yearsExperience: event.target.value }))
             }
-          >
-            <option value="">Select</option>
-            <option value="fresher">Fresher</option>
-            <option value="0-2-years">0–2 Years</option>
-            <option value="above-2-years">Above 2 Years</option>
-          </select>
+          />
         </label>
         <label>
           Current Location *
           <input
             required
+            placeholder="City, State"
             value={form.location}
             onChange={(event) => setForm((prev) => ({ ...prev, location: event.target.value }))}
           />
@@ -145,6 +145,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
         <label>
           Current CTC
           <input
+            placeholder="e.g. 5 LPA"
             value={form.currentCtc}
             onChange={(event) => setForm((prev) => ({ ...prev, currentCtc: event.target.value }))}
           />
@@ -152,6 +153,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
         <label>
           Expected CTC
           <input
+            placeholder="e.g. 7 LPA"
             value={form.expectedCtc}
             onChange={(event) =>
               setForm((prev) => ({ ...prev, expectedCtc: event.target.value }))
@@ -176,6 +178,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
           LinkedIn URL
           <input
             type="url"
+            placeholder="https://linkedin.com/in/yourprofile"
             value={form.linkedInUrl}
             onChange={(event) =>
               setForm((prev) => ({ ...prev, linkedInUrl: event.target.value }))
@@ -186,6 +189,7 @@ export function ApplyForm({ roleTitle, roleSlug }: Props) {
           Portfolio / GitHub URL
           <input
             type="url"
+            placeholder="https://github.com/yourname"
             value={form.portfolioUrl}
             onChange={(event) =>
               setForm((prev) => ({ ...prev, portfolioUrl: event.target.value }))

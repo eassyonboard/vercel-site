@@ -13,10 +13,9 @@ export default function CareersPage() {
           <h1>Open roles at Eassy Onboard</h1>
           <p className="careers-summary">
             Explore current openings and choose a role to view the full job
-            description and apply. All positions below are highlighted as remote.
+            description and apply.
           </p>
           <div className="careers-tags">
-            <span className="tag-remote">Remote</span>
             <span>Full-time</span>
             <span>Product + Data + AI</span>
           </div>
@@ -35,7 +34,6 @@ export default function CareersPage() {
                 <article key={role.slug} className="open-role-card">
                   <div className="open-role-head">
                     <h3>{role.title}</h3>
-                    <span className="tag-remote">Remote</span>
                   </div>
                   <p>{role.summary}</p>
                   <div className="open-role-actions">
@@ -60,12 +58,12 @@ export default function CareersPage() {
               defaultSlug={CAREER_ROLES[0].slug}
             />
             <div className="job-sidebar-card">
-              <p className="job-sidebar-label">Application flow</p>
+              <p className="job-sidebar-label">How to apply</p>
               <ul className="job-mini-list">
                 <li>Select role from dropdown</li>
                 <li>Read role-specific JD</li>
                 <li>Submit details + resume</li>
-                <li>Track applications in admin</li>
+                <li>Our team will review and contact shortlisted candidates</li>
               </ul>
             </div>
           </aside>
