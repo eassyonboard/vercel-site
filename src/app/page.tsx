@@ -210,7 +210,7 @@ export default function HomePage() {
           Contact
         </h2>
         <div className="bottom-strip-columns">
-          <div className="bottom-strip-col bottom-strip-col--connect">
+          <div className="bottom-strip-col">
             <h3 className="bottom-strip-heading">Connect</h3>
             <p className="bottom-strip-lead">
               Let&apos;s build your next data platform with confidence.
@@ -229,7 +229,7 @@ export default function HomePage() {
                 <span>LinkedIn</span>
               </a>
               <a
-                href="mailto:admin@eassyonboard.com"
+                href="mailto:admin@eassyonboard.com?subject=Inquiry%20from%20Eassy%20Onboard%20website"
                 className="connect-channel-link"
                 aria-label="Email admin@eassyonboard.com"
               >
@@ -239,18 +239,20 @@ export default function HomePage() {
                 <span>Email</span>
               </a>
             </div>
-            <div className="connect-query">
-              <h4 className="connect-query-heading">Have a question?</h4>
-              <p className="connect-query-text">
-                Ask us about Databricks delivery, data architecture, or AI on your
-                enterprise data — whether you&apos;re scoping a migration, a new
-                pipeline, or a proof of concept. We&apos;ll get back to you with a
-                thoughtful reply.
-              </p>
-              <a className="connect-query-cta" href="mailto:admin@eassyonboard.com">
-                Send us a message
-              </a>
-            </div>
+          </div>
+          <div className="bottom-strip-col">
+            <h3 className="bottom-strip-heading">Have a question?</h3>
+            <p className="connect-query-text">
+              Ask us about Databricks delivery, data architecture, or AI on your
+              enterprise data — whether you&apos;re scoping a migration, a new pipeline,
+              or a proof of concept. We&apos;ll get back to you with a thoughtful reply.
+            </p>
+            <a
+              className="connect-query-cta"
+              href="mailto:admin@eassyonboard.com?subject=New%20project%20discussion"
+            >
+              Send us a message
+            </a>
           </div>
           <div className="bottom-strip-col">
             <h3 className="bottom-strip-heading">Headquarters</h3>
